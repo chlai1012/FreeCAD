@@ -78,6 +78,7 @@ SET(FemExamples_SRCS
     femexamples/equation_electrostatics_capacitance_two_balls.py
     femexamples/equation_electrostatics_electricforce_elmer_nongui6.py
     femexamples/frequency_beamsimple.py
+    femexamples/frequency_cylindrical_shell.py
     femexamples/manager.py
     femexamples/material_multiple_bendingbeam_fiveboxes.py
     femexamples/material_multiple_bendingbeam_fivefaces.py
