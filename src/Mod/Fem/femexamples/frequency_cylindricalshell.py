@@ -25,11 +25,11 @@ import FreeCAD
 
 import Draft
 
+import Fem
 import ObjectsFem
 
-from femmesh.gmshtools import GmshTools
-
 from . import manager
+from .manager import get_meshname
 from .manager import init_doc
 
 
@@ -148,21 +148,21 @@ def setup(doc=None, solvertype="ccxtools"):
     analysis.addObject(geo_thickness)
 
     # mesh
-    femmesh_obj = ObjectsFem.makeMeshGmsh(doc, "Cylinder_Shell_Mesh")
+    from .meshes.mesh_cylindricalshell_quad4 import create_nodes, create_elements
+    fem_mesh = Fem.FemMesh()
+    control = create_nodes(fem_mesh)
+    if not control:
+        FreeCAD.Console.PrintError("Error on creating nodes.\n")
+    control = create_elements(fem_mesh)
+    if not control:
+        FreeCAD.Console.PrintError("Error on creating elements.\n")
+    femmesh_obj = analysis.addObject(ObjectsFem.makeMeshGmsh(doc, get_meshname()))[0]
+    femmesh_obj.FemMesh = fem_mesh
     femmesh_obj.Part = doc.Face
-    femmesh_obj.ElementDimension = "2D"
-    femmesh_obj.ElementOrder = "2nd"
-    femmesh_obj.Algorithm2D = "Packing Parallelograms"
-    femmesh_obj.RecombinationAlgorithm = "Simple"
-    femmesh_obj.HighOrderOptimize = "Optimization"
-    femmesh_obj.RecombineAll = True
-    femmesh_obj.SecondOrderLinear = True
+    femmesh_obj.SecondOrderLinear = False
     femmesh_obj.CharacteristicLengthMax = "300.0 mm"
 
-    gmsh_mesh = GmshTools(femmesh_obj)
-    error = gmsh_mesh.create_mesh()
-    FreeCAD.Console.PrintMessage(error)
-
-    analysis.addObject(femmesh_obj)
     doc.recompute()
+    
+    
     return doc

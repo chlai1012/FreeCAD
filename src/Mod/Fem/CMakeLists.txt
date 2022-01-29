@@ -78,7 +78,7 @@ SET(FemExamples_SRCS
     femexamples/equation_electrostatics_capacitance_two_balls.py
     femexamples/equation_electrostatics_electricforce_elmer_nongui6.py
     femexamples/frequency_beamsimple.py
-    femexamples/frequency_cylindrical_shell.py
+    femexamples/frequency_cylindricalshell.py
     femexamples/manager.py
     femexamples/material_multiple_bendingbeam_fiveboxes.py
     femexamples/material_multiple_bendingbeam_fivefaces.py
@@ -116,6 +116,7 @@ SET(FemExampleMeshes_SRCS
     femexamples/meshes/mesh_constraint_tie_tetra10.py
     femexamples/meshes/mesh_contact_box_halfcylinder_tetra10.py
     femexamples/meshes/mesh_contact_tube_tube_tria3.py
+    femexamples/meshes/mesh_cylindricalshell_quad4.py
     femexamples/meshes/mesh_eigenvalue_of_elastic_beam_tetra10.py
     femexamples/meshes/mesh_electricforce_elmer_nongui6_tetra10.py
     femexamples/meshes/mesh_flexural_buckling.py
