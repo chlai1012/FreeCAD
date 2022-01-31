@@ -163,6 +163,4 @@ def setup(doc=None, solvertype="ccxtools"):
     femmesh_obj.CharacteristicLengthMax = "300.0 mm"
 
     doc.recompute()
-    
-    
     return doc
