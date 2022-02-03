@@ -160,7 +160,7 @@ def setup(doc=None, solvertype="ccxtools"):
     femmesh_obj.FemMesh = fem_mesh
     femmesh_obj.Part = doc.Face
     femmesh_obj.SecondOrderLinear = False
-    femmesh_obj.CharacteristicLengthMax = "300.0 mm"
+    femmesh_obj.CharacteristicLengthMax = "250.0 mm"
 
     doc.recompute()
     return doc
